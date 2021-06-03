@@ -1,12 +1,12 @@
 ﻿<Window x:Class="WPF.UI.Views.ShellView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WPF.UI.Views"
         mc:Ignorable="d"
         Title="ShellView" Height="450" Width="800"
-        FontSize="18">
+        FontSize="18"
+        WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
@@ -28,7 +28,26 @@
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
 
-        <TextBlock x:Name="FirstName" Grid.Row="1" Grid.Column="1">
+        <!--Row 1-->
+        <TextBlock Text="{Binding Path=FullName, Mode=OneWay}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
         </TextBlock>
+
+        <!--Row 2-->
+        <TextBox Grid.Row="2" Grid.Column="1" x:Name="FirstName" MinWidth="100" MaxWidth="150" Padding="0,10,0,0"/>
+        <TextBox Grid.Row="2" Grid.Column="2" x:Name="LastName" MinWidth="100" MaxWidth="150" Padding="0,10,0,0"/>
+
+        <!--Row 3-->
+        <ComboBox Grid.Row="3" Grid.Column="1" x:Name="People" SelectedItem="{Binding Path=SelectedPerson, Mode=OneWayToSource}" DisplayMemberPath="FirstName"/>
+        <TextBox Grid.Row="3" Grid.Column="2" x:Name="SelectedPerson_LastName" MinWidth="100" MaxWidth="150" Padding="0,10,0,0"/>
+
+        <!--Row 4-->
+        <Button Grid.Row="4" Grid.Column="1" Content="Clear Text" x:Name="ClearText"/>
+
+        <!--Row 5-->
+        <Button Grid.Row="5" Grid.Column="1" Content="Load Page One" x:Name="LoadPageOne"/>
+        <Button Grid.Row="5" Grid.Column="2" Content="Load Page Two" x:Name="LoadPageTwo"/>
+
+        <!--Row 6-->
+        <ContentControl Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="5" x:Name="ActiveItem"/>
     </Grid>
 </Window>
